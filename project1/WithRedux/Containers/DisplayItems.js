@@ -14,7 +14,7 @@ class DisplayItems extends Component{
 
     handleAddClick(event){
        
-        this.props.wishList(this.l[event.target.name]);
+        this.props.wishListprop(this.l[event.target.name]);
     }
     render(){
 
@@ -29,7 +29,7 @@ class DisplayItems extends Component{
                 Rent Agreement validity:{(this.props.isFlatData?i.rentAgreementVldty:'NA')}<br/>
                 Price:Rs.               {i.price}
 
-                <input name={j} type='button' value='add' onClick={this.handleAddClick}/>
+                <input name={j} type='button' value={this.props.buttonProp} onClick={this.handleAddClick} ref='bname'/>
         </React.Fragment>
     )})
   
@@ -46,11 +46,15 @@ function DisplayImages(props){
     return ImageList;
 }
 
-
+function mapStateToProps(state){
+    return{
+        buttonProp:state.removeItemFlag
+    }
+}
 function matchDispatchToProps(dispatch){
     return bindActionCreators({
-      wishList:updateWishListAction
+      wishListprop:updateWishListAction
     },dispatch);
   }
 
-export default connect(null,matchDispatchToProps)(DisplayItems);
+export default connect(mapStateToProps,matchDispatchToProps)(DisplayItems);

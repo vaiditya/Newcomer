@@ -1,8 +1,17 @@
-const updateWishListAction=(fragment)=>{
+const updateWishListAction=(item)=>{
     return {
         type:"UPDATE_WISHLIST",
-        payload:fragment
+        payload:item
     }
 }
 
+const removeItemFlagAction=()=>{
+    return{
+        type:"REMOVE_ITEM",
+        text:'Remove'
+    }
+
+}
+
 export default updateWishListAction;
+export {removeItemFlagAction};

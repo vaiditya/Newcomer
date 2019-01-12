@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 import selectCategory,{selectRange,updateUserActivity} from './SelectCategoryAction';
+import {removeItemFlagAction} from  './WishListAction';
 import FlatData from './FlatData';
 import PgData from './PgData';
 import UserActivityReducer from './UserActivityReducer';
@@ -32,6 +33,7 @@ class App extends Component {
   handleClick(){
     this.show=!this.show;
     this.forceUpdate();
+    this.props.removeItemFlag();
   }
   
   render(){
@@ -43,7 +45,8 @@ class App extends Component {
 
     category=(this.props.selectedCategoryProp?this.props.selectedCategoryProp:this.props.userData[0].category);
     range=(this.props.selectedRangeProp?this.props.selectedRangeProp:this.props.userData[0].price);
-    displayWishList=(this.props.wishListProp?this.props.wishListProp:this.props.userData[0].wishList);
+    displayWishList=(this.props.wishListProp?this.props.wishListProp.fragment:this.props.userData[0].wishList);
+    const o=(displayWishList.length>0?displayWishList.refs.bname.name:'sadsada');
    
    
     /* if(this.props.selectedCategoryProp && this.props.selectedRangeProp)
@@ -60,9 +63,10 @@ class App extends Component {
       <input type='range' min='0' max='10000' value={range} onChange={this.handleRangeChange}/>
       {category==='Flat'?<FlatData />:<PgData />}
       
-      <input type='button' value={this.props.wishListProp?Object.keys(this.props.wishListProp).length:'0'} onClick={
+      <input type='button' value={this.props.wishListProp?this.props.wishListProp.fragment.length:'0'} onClick={
         this.handleClick
       } />
+      {console.log(o)}
         {this.show?displayWishList:null}
     </div>
     );
@@ -76,7 +80,8 @@ function mapStateToProps(state){
       userData:state.userData,
       selectedCategoryProp:state.selectedCategory,
       selectedRangeProp:state.selectedRange,
-      wishListProp:state.wishList
+      wishListProp:state.wishList,
+      
   }
 }
 
@@ -84,6 +89,7 @@ function matchDispatchTOProps(dispatch){
   return bindActionCreators({
     selectedCategory:selectCategory,
     selectedRange:selectRange,
+    removeItemFlag:removeItemFlagAction
     //userDataStatus:updateUserActivity
   },dispatch);
 }
