@@ -20,11 +20,13 @@ class App extends Component {
     this.handleRangeChange=this.handleRangeChange.bind(this);
     this.handleClick=this.handleClick.bind(this);
     this.show=false;
+    this.showRange=false
   }
   
   
   handleCategoryChange(event){
     this.props.selectedCategory(event.target.value);
+    this.showRange=true;
     
   }
   handleRangeChange(event){
@@ -46,7 +48,7 @@ class App extends Component {
     category=(this.props.selectedCategoryProp?this.props.selectedCategoryProp:this.props.userData[0].category);
     range=(this.props.selectedRangeProp?this.props.selectedRangeProp:this.props.userData[0].price);
     displayWishList=(this.props.wishListProp?this.props.wishListProp.fragment:this.props.userData[0].wishList);
-    const o=(displayWishList.length>0?displayWishList.refs.bname.name:'sadsada');
+    //const o=(displayWishList.length>0?displayWishList.refs.bname.name:'sadsada');
    
    
     /* if(this.props.selectedCategoryProp && this.props.selectedRangeProp)
@@ -55,20 +57,36 @@ class App extends Component {
     
     
     return(
-    <div>
-        Category:<select value={category} onChange={this.handleCategoryChange}>
-        <option>Flat</option>
-        <option>PG</option>
-      </select>
-      <input type='range' min='0' max='10000' value={range} onChange={this.handleRangeChange}/>
-      {category==='Flat'?<FlatData />:<PgData />}
+    <div className="main">
       
-      <input type='button' value={this.props.wishListProp?this.props.wishListProp.fragment.length:'0'} onClick={
-        this.handleClick
-      } />
-      {console.log(o)}
-        {this.show?displayWishList:null}
-    </div>
+        <header className="header">
+        <h2>NewComer</h2>
+        <h5 className="wishlabel">Wishlist
+        <input className='wish-button' type='button' value={this.props.wishListProp?this.props.wishListProp.fragment.length:'0'} onClick={
+            this.handleClick
+          } />
+        </h5>
+        </header>
+        <div className="attribute">
+            Category:<select className="select" value={category} onChange={this.handleCategoryChange}>
+            <option>Flat</option>
+            <option>PG</option>
+            </select>
+              {this.showRange?
+                <div>
+                  0<input className="slider" type='range' min='0' max='10000' value={range} onChange={this.handleRangeChange}/>10000
+                  
+                  Selected value:{range}
+                </div>:null
+              }
+        </div>
+        <div className="container">
+          {category==='Flat'?<FlatData />:<PgData />}
+        
+            {this.show?displayWishList:null}
+        </div>
+        </div>
+    
     );
     
 }

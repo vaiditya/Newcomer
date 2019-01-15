@@ -20,17 +20,18 @@ class DisplayItems extends Component{
 
     this.l=this.props.dataItems.map((i,j)=>{
         
-        return(<React.Fragment>
+        return(<div className="item">
                 <h2>{i.address}</h2>
 
                 <DisplayImages listOfImgLinks={i.images}/><br/>
-                
-                Availability:           {i.occupancyAvailable}<br/>
-                Rent Agreement validity:{(this.props.isFlatData?i.rentAgreementVldty:'NA')}<br/>
-                Price:Rs.               {i.price}
+                <ul>
+                <li>Availability:           {i.occupancyAvailable}</li>
+                <li>Rent Agreement validity:{(this.props.isFlatData?i.rentAgreementVldty:'NA')}</li>
+                <li>Price:Rs.               {i.price}</li>
 
-                <input name={j} type='button' value={this.props.buttonProp} onClick={this.handleAddClick} ref='bname'/>
-        </React.Fragment>
+                <li><input class="button" name={j} type='button' value={this.props.buttonProp} onClick={this.handleAddClick} ref='bname'/></li>
+                </ul>
+        </div>
     )})
   
     return this.l;
