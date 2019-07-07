@@ -1,0 +1,104 @@
+body{
+  font-family:  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #ecececbd;
+  
+}
+.App {
+  text-align: center;
+}
+.main{
+  
+}
+
+.header{
+  position:fixed;
+  width:100%;
+  background-color: darkcyan;
+  text-align: left;
+  height:10%;
+  color:#000;
+}
+.container{
+  float:right;  
+  width:80%;
+  padding-top:70px;
+  padding-left:20px;
+
+}
+.attribute{
+  border-right: 2px solid #000507;
+  position: fixed;
+  float:left;
+  width:20%;
+  height:90%;
+  top:10%;
+  background-color: #d3cdcd
+}
+.slider {
+  -webkit-appearance: none;
+  width: 70%;
+  height: 7px;
+  border-radius: 5px;   
+  background: #94bb9e;
+  /*outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;*/
+}
+.button{
+  border-radius:10px;
+  width:50px;
+  height:30px;
+  border: 2px solid #000;
+  background-color: rgb(27, 163, 163);
+  color:#fff
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%; 
+  background: rgb(74, 185, 74);
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: rgb(209, 216, 209);
+  cursor: pointer;
+}
+
+.wish-button {
+  background-color: #0a4555;
+  border-radius : 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  color:#fff;
+  font-size: 11px;
+  text-align: center;
+  width:20px;
+  height:20px;
+  margin:10px;
+
+}
+.wishlabel{
+  position: fixed;
+  left:80%;
+  top:0px
+}
+.select{
+  width: 140px;
+}
+.item{
+  
+  border:3px solid #cadee6;
+  padding:10px 30px;
+  margin:5px;
+  
+}
+.item li{
+  display:inline;
+  padding-right:20px
+}
